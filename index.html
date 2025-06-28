@@ -200,6 +200,19 @@
             max-width: 600px;
             color: #fff;
             box-shadow: 0 0 50px rgba(255, 20, 147, 0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-content a {
+            color: #00ffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .modal-content a:hover {
+            color: #ff1493;
+            text-decoration: underline;
         }
 
         .close {
@@ -255,6 +268,12 @@
             
             .project-circle p {
                 font-size: 10px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
             }
         }
     </style>
@@ -312,6 +331,11 @@
             <h3>DevOps Infrastructure</h3>
             <p>AWS, Docker, Kubernetes, CI/CD automation</p>
         </div>
+
+        <div class="project-circle" id="project7" onclick="openModal('ansible-config-management')">
+            <h3>Ansible Config Management</h3>
+            <p>Enterprise Infrastructure as Code with automated deployments</p>
+        </div>
     </div>
 
     <!-- Modal -->
@@ -349,12 +373,13 @@
             centralCircle.querySelector('.subtitle').textContent = 'Explore my projects';
             
             const positions = [
-                { x: -350, y: -200 }, // top-left
-                { x: 350, y: -200 },  // top-right
-                { x: -450, y: 100 },  // middle-left
-                { x: 450, y: 100 },   // middle-right
-                { x: -350, y: 300 },  // bottom-left
-                { x: 350, y: 300 }    // bottom-right
+                { x: -350, y: -250 }, // top-left
+                { x: 350, y: -250 },  // top-right
+                { x: -450, y: -50 },  // middle-left
+                { x: 450, y: -50 },   // middle-right
+                { x: -450, y: 150 },  // lower-left
+                { x: 450, y: 150 },   // lower-right
+                { x: 0, y: 300 }      // bottom-center (Ansible project)
             ];
 
             projects.forEach((project, index) => {
@@ -399,6 +424,7 @@
                             <li>Calculated optimal passive joint length for mobile base reconfiguration</li>
                         </ul>
                         <p><strong>Technologies:</strong> MATLAB, Simulink, Sim-mechanics, Virtual Reality Toolbox, SolidWorks</p>
+                        <p><strong>📄 Project Report:</strong> <a href="https://tinyurl.com/246v6cjy" target="_blank">View Full Report</a></p>
                     `
                 },
                 'face-mask-detection': {
@@ -414,6 +440,7 @@
                         </ul>
                         <p><strong>Technologies:</strong> Python, OpenCV, TensorFlow, MobileNet v2, Computer Vision</p>
                         <p><strong>Impact:</strong> Real-world application for health safety compliance</p>
+                        <p><strong>💻 GitHub Repository:</strong> <a href="https://github.com/limatwo/facemask-detection/tree/main" target="_blank">View Code</a></p>
                     `
                 },
                 'mine-detection-robot': {
@@ -429,6 +456,7 @@
                         </ul>
                         <p><strong>Technologies:</strong> Microcontroller Programming, Circuit Design, Mechanical Design, Solar Power Systems</p>
                         <p><strong>Impact:</strong> Enhanced safety for explosive ordnance disposal operations</p>
+                        <p><strong>📄 Project Report:</strong> <a href="https://1drv.ms/b/s!AoVtOIbCvWxqhM4QTL2CqMX1RN7VhQ?e=xdei0Z" target="_blank">View Full Report</a></p>
                     `
                 },
                 'connectome-fingerprinting': {
@@ -444,6 +472,7 @@
                         </ul>
                         <p><strong>Technologies:</strong> Python, fMRI Analysis, Statistical Methods, Data Preprocessing</p>
                         <p><strong>Impact:</strong> Advanced understanding of brain connectivity patterns</p>
+                        <p><strong>📄 Project Report:</strong> <a href="https://1drv.ms/b/s!AoVtOIbCvWxqhMsWkcTUhMZWiBOLFQ?e=ZMlvib" target="_blank">View Research Report</a></p>
                     `
                 },
                 'ant-colony-modeling': {
@@ -459,6 +488,7 @@
                         </ul>
                         <p><strong>Technologies:</strong> Python, Mathematical Modeling, Biological Simulation</p>
                         <p><strong>Impact:</strong> Contributed to understanding of social insect biology</p>
+                        <p><strong>📊 Presentation:</strong> <a href="https://tinyurl.com/459es7t2" target="_blank">View Presentation</a></p>
                     `
                 },
                 'devops-infrastructure': {
@@ -476,6 +506,33 @@
                         </ul>
                         <p><strong>Technologies:</strong> AWS, Docker, Kubernetes, Jenkins, Terraform, Ansible</p>
                         <p><strong>Impact:</strong> Streamlined deployment and infrastructure management</p>
+                        <h3>Featured Projects:</h3>
+                        <p><strong>💻 Ansible Configuration Management:</strong> <a href="https://github.com/limatwo/ansible-config-management" target="_blank">View Project</a></p>
+                    `
+                },
+                'ansible-config-management': {
+                    title: 'Ansible Configuration Management',
+                    details: `
+                        <h2>Enterprise Infrastructure as Code Project (2024)</h2>
+                        <h3>Key Features:</h3>
+                        <ul>
+                            <li>Built automated server configuration system using Ansible</li>
+                            <li>Implemented Infrastructure as Code with reusable roles</li>
+                            <li>Created production-ready automation for Nginx, SSL, and security</li>
+                            <li>Multi-environment support (Production/Staging/Development)</li>
+                            <li>Security hardening with firewall and user management</li>
+                            <li>Template-driven configurations for maximum flexibility</li>
+                        </ul>
+                        <p><strong>Technologies:</strong> Ansible, YAML, Nginx, Linux, Infrastructure as Code, SSL/TLS</p>
+                        <p><strong>Impact:</strong> Reduced deployment time by 80% with consistent configurations</p>
+                        <h3>Technical Highlights:</h3>
+                        <ul>
+                            <li>Role-based architecture with modular components</li>
+                            <li>Automated SSL certificate generation and deployment</li>
+                            <li>Comprehensive security hardening (UFW, SSH keys, user management)</li>
+                            <li>Production-ready Nginx configurations with performance optimization</li>
+                        </ul>
+                        <p><strong>💻 GitHub Repository:</strong> <a href="https://github.com/limatwo/ansible-config-management" target="_blank">View Complete Project</a></p>
                     `
                 }
             };
