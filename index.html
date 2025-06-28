@@ -332,12 +332,7 @@
             <p>Biological simulation of Pheidole caste ratios</p>
         </div>
 
-        <div class="project-circle" id="project6" data-project="devops-infrastructure">
-            <h3>DevOps Infrastructure</h3>
-            <p>AWS, Docker, Kubernetes, CI/CD automation</p>
-        </div>
-
-        <div class="project-circle" id="project7" data-project="ansible-config-management">
+        <div class="project-circle" id="project6" data-project="ansible-config-management">
             <h3>Ansible Config Management</h3>
             <p>Enterprise Infrastructure as Code with automated deployments</p>
         </div>
@@ -436,25 +431,6 @@
                     <p><strong>📊 Presentation:</strong> <a href="https://tinyurl.com/459es7t2" target="_blank">View Presentation</a></p>
                 `
             },
-            'devops-infrastructure': {
-                title: 'DevOps Infrastructure & Automation',
-                details: `
-                    <h2>DevOps Engineer Diploma (2024)</h2>
-                    <h3>Core Competencies:</h3>
-                    <ul>
-                        <li>Linux & Shell Scripting with Python automation</li>
-                        <li>Containerization: Docker, Docker Compose, Kubernetes</li>
-                        <li>Infrastructure as Code: Ansible, Terraform for AWS</li>
-                        <li>CI/CD Pipelines: Git, GitHub, Jenkins</li>
-                        <li>Monitoring: Nagios, Prometheus for service health</li>
-                        <li>Cloud Computing: AWS EC2, S3, IAM, CloudFormation</li>
-                    </ul>
-                    <p><strong>Technologies:</strong> AWS, Docker, Kubernetes, Jenkins, Terraform, Ansible</p>
-                    <p><strong>Impact:</strong> Streamlined deployment and infrastructure management</p>
-                    <h3>Featured Projects:</h3>
-                    <p><strong>💻 Ansible Configuration Management:</strong> <a href="https://github.com/limatwo/ansible-config-management" target="_blank">View Project</a></p>
-                `
-            },
             'ansible-config-management': {
                 title: 'Ansible Configuration Management',
                 details: `
@@ -539,9 +515,8 @@
                 { x: 350, y: -250 },  // top-right
                 { x: -450, y: -50 },  // middle-left
                 { x: 450, y: -50 },   // middle-right
-                { x: -450, y: 150 },  // lower-left
-                { x: 450, y: 150 },   // lower-right
-                { x: 0, y: 300 }      // bottom-center (Ansible project)
+                { x: -350, y: 150 },  // lower-left
+                { x: 350, y: 150 }    // lower-right (Ansible project)
             ];
 
             projects.forEach((project, index) => {
