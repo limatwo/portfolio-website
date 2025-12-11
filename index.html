@@ -45,10 +45,10 @@
             z-index: 2;
         }
 
-        /* Central Coffee Pot Element */
+        /* Central Dallah Element */
         .central-circle {
-            width: 280px;
-            height: 280px;
+            width: 320px;
+            height: 320px;
             border: 3px solid #8B4513;
             border-radius: 50%;
             display: flex;
@@ -62,6 +62,7 @@
             position: relative;
             z-index: 10;
             box-shadow: 0 0 30px rgba(139, 69, 19, 0.3);
+            overflow: hidden;
         }
 
         .central-circle:hover {
@@ -70,23 +71,18 @@
             background: radial-gradient(circle, rgba(196, 136, 91, 0.4) 0%, rgba(139, 69, 19, 0.2) 100%);
         }
 
-        /* Coffee Pot Icon */
-        .coffee-icon {
-            font-size: 80px;
-            color: #8B4513;
+        /* Dallah Image in Center */
+        .dallah-image {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
             margin-bottom: 15px;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            transition: transform 0.3s ease;
         }
 
-        .central-circle h1 {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #8B4513, #C4885B);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .central-circle:hover .dallah-image {
+            transform: scale(1.05);
         }
 
         .central-circle .title {
@@ -94,6 +90,7 @@
             text-align: center;
             color: #8B4513;
             font-weight: 300;
+            margin-top: 5px;
         }
 
         .central-circle .subtitle {
@@ -198,10 +195,11 @@
             font-size: 12px;
             color: #8B4513;
             z-index: 5;
-            background: rgba(212, 165, 116, 0.3);
+            background: rgba(212, 165, 116, 0.5);
             padding: 15px;
             border-radius: 10px;
             backdrop-filter: blur(5px);
+            border: 1px solid rgba(139, 69, 19, 0.3);
         }
 
         .contact-info div {
@@ -227,10 +225,15 @@
             color: #5D4037;
             z-index: 5;
             text-align: right;
-            background: rgba(212, 165, 116, 0.3);
+            background: rgba(212, 165, 116, 0.5);
             padding: 15px;
             border-radius: 10px;
             backdrop-filter: blur(5px);
+            border: 1px solid rgba(139, 69, 19, 0.3);
+        }
+
+        .tech-stack div {
+            margin-bottom: 5px;
         }
 
         .modal {
@@ -259,6 +262,27 @@
             overflow-y: auto;
         }
 
+        .modal-content h2 {
+            color: #8B4513;
+            margin-bottom: 15px;
+        }
+
+        .modal-content h3 {
+            color: #8B4513;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .modal-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-content li {
+            margin-bottom: 8px;
+            color: #5D4037;
+        }
+
         .modal-content a {
             color: #8B4513;
             text-decoration: none;
@@ -276,6 +300,7 @@
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
+            line-height: 20px;
         }
 
         .close:hover {
@@ -286,7 +311,7 @@
             position: absolute;
             top: 30px;
             left: 30px;
-            background: rgba(196, 136, 91, 0.3);
+            background: rgba(196, 136, 91, 0.5);
             border: 1px solid #8B4513;
             color: #8B4513;
             padding: 10px 20px;
@@ -299,7 +324,7 @@
         }
 
         .reset-btn:hover {
-            background: rgba(196, 136, 91, 0.5);
+            background: rgba(196, 136, 91, 0.7);
             transform: scale(1.05);
         }
 
@@ -326,21 +351,18 @@
 
         @media (max-width: 768px) {
             .central-circle {
-                width: 220px;
-                height: 220px;
+                width: 250px;
+                height: 250px;
             }
 
-            .coffee-icon {
-                font-size: 60px;
+            .dallah-image {
+                width: 140px;
+                height: 140px;
             }
             
             .project-circle {
                 width: 140px;
                 height: 140px;
-            }
-            
-            .central-circle h1 {
-                font-size: 18px;
             }
             
             .project-circle h3 {
@@ -359,6 +381,11 @@
 
             .palm-tree {
                 display: none;
+            }
+
+            .contact-info, .tech-stack {
+                font-size: 10px;
+                padding: 10px;
             }
         }
     </style>
@@ -387,10 +414,10 @@
 
     <div class="container">
         <div class="central-circle" id="centralCircle">
-            <div class="coffee-icon">☕</div>
-            <h1>MAHMOUD ABDALLA</h1>
+            <!-- Replace this src with your actual image path -->
+            <img src="dallah.png" alt="Mahmoud Abdalla Dallah" class="dallah-image">
             <div class="title">AI • DevOps • Robotics Engineer</div>
-            <div class="subtitle">Click the dallah to explore</div>
+            <div class="subtitle">Click the dallah to explore projects</div>
         </div>
 
         <!-- Project Circles -->
@@ -621,7 +648,7 @@
             const centralCircle = document.getElementById('centralCircle');
             
             centralCircle.style.transform = 'scale(1)';
-            centralCircle.querySelector('.subtitle').textContent = 'Click the dallah to explore';
+            centralCircle.querySelector('.subtitle').textContent = 'Click the dallah to explore projects';
             
             projects.forEach(project => {
                 project.classList.remove('visible');
