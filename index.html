@@ -47,8 +47,8 @@
 
         /* Dallah-shaped central element */
         .central-dallah {
-            width: 320px;
-            height: 400px;
+            width: 400px;
+            height: 480px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -66,52 +66,15 @@
         }
 
         /* SVG Dallah Shape */
-        .dallah-shape {
-            position: absolute;
+        .dallah-svg-container {
             width: 100%;
             height: 100%;
-            top: 0;
-            left: 0;
-        }
-
-        .dallah-svg {
-            width: 100%;
-            height: 100%;
-            fill: rgba(196, 136, 91, 0.4);
-            stroke: #8B4513;
-            stroke-width: 3;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
-        }
-
-        /* Content inside dallah */
-        .dallah-content {
             position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 20px;
         }
 
-        .dallah-image {
-            width: 140px;
-            height: 140px;
-            object-fit: contain;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-        }
-
-        .central-dallah .title {
-            font-size: 15px;
-            text-align: center;
-            color: #8B4513;
-            font-weight: 600;
-            margin-top: 5px;
-        }
-
-        .central-dallah .subtitle {
-            font-size: 11px;
-            text-align: center;
-            color: #5D4037;
-            margin-top: 5px;
+        .dallah-svg-container svg {
+            width: 100%;
+            height: 100%;
         }
 
         /* Project Circles */
@@ -385,13 +348,8 @@
 
         @media (max-width: 768px) {
             .central-dallah {
-                width: 250px;
-                height: 320px;
-            }
-
-            .dallah-image {
-                width: 110px;
-                height: 110px;
+                width: 300px;
+                height: 360px;
             }
             
             .project-circle {
@@ -464,53 +422,63 @@
     <div class="container">
         <!-- Dallah-shaped central element -->
         <div class="central-dallah" id="centralDallah">
-            <!-- SVG Dallah Shape -->
-            <svg class="dallah-shape" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
-                <!-- Dallah body (pot shape) -->
-                <path class="dallah-svg" d="
-                    M 100 50
-                    Q 70 50, 65 80
-                    L 60 150
-                    Q 60 180, 80 190
-                    L 120 190
-                    Q 140 180, 140 150
-                    L 135 80
-                    Q 130 50, 100 50
-                    Z
-                    M 100 40
-                    Q 95 40, 95 35
-                    L 95 20
-                    Q 95 15, 100 10
-                    Q 105 15, 105 20
-                    L 105 35
-                    Q 105 40, 100 40
-                    Z
-                    M 140 100
-                    Q 155 100, 160 110
-                    Q 160 120, 155 125
-                    Q 150 128, 145 125
-                    L 140 120
-                    Z
-                    M 60 100
-                    Q 45 100, 40 110
-                    Q 40 120, 45 125
-                    Q 50 128, 55 125
-                    L 60 120
-                    Z
-                    M 80 195
-                    L 120 195
-                    Q 125 200, 120 205
-                    L 80 205
-                    Q 75 200, 80 195
-                    Z
-                "/>
-            </svg>
-            
-            <!-- Content -->
-            <div class="dallah-content">
-                <img src="dallah.png" alt="Mahmoud Abdalla" class="dallah-image">
-                <div class="title">AI • DevOps • Robotics Engineer</div>
-                <div class="subtitle">Click the dallah to explore</div>
+            <div class="dallah-svg-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" width="500" height="600">
+                    <style>
+                        .outline { fill: #E8C39E; stroke: #8B4513; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+                        .text-name { font-family: 'Courier New', Courier, serif; font-weight: bold; font-size: 36px; text-anchor: middle; fill: #8B4513; letter-spacing: 2px; }
+                        .text-link { font-family: sans-serif; font-size: 16px; text-anchor: middle; fill: #8B4513; text-decoration: underline; cursor: pointer; }
+                        .text-link:hover { fill: #5D4037; }
+                        .lid-detail { fill: none; stroke: #8B4513; stroke-width: 3; }
+                    </style>
+                    <path class="outline" d="
+                        M 250 130 
+                        C 280 130, 310 160, 320 200 
+                        C 330 240, 300 250, 300 300 
+                        C 300 380, 380 400, 380 500 
+                        C 380 560, 320 580, 250 580 
+                        C 180 580, 120 560, 120 500 
+                        C 120 400, 200 380, 200 300 
+                        C 200 250, 170 240, 180 200 
+                        C 190 160, 220 130, 250 130 
+                        Z" />
+                    <path class="outline" d="
+                        M 235 130 
+                        L 235 110 
+                        C 220 100, 220 70, 250 50 
+                        C 280 70, 280 100, 265 110 
+                        L 265 130" />
+                    
+                    <line x1="235" y1="130" x2="265" y2="130" class="lid-detail" />
+                    <path class="lid-detail" d="M 180 200 Q 250 220 320 200" />
+                    
+                    <path class="outline" d="
+                        M 180 230 
+                        Q 100 200, 60 180 
+                        Q 40 170, 20 180 
+                        Q 40 200, 100 260 
+                        Q 140 300, 180 320" 
+                        fill="#E8C39E"/>
+                    <path class="outline" d="
+                        M 320 230 
+                        Q 380 230, 400 260 
+                        Q 420 290, 420 350 
+                        Q 420 410, 380 450 
+                        Q 370 460, 360 450" 
+                        fill="none" />
+                        
+                    <path class="lid-detail" d="
+                        M 320 250 
+                        Q 350 250, 370 270 
+                        Q 390 300, 390 350 
+                        Q 390 400, 365 425" 
+                        fill="none" />
+                    <text x="250" y="420" class="text-name">MAHMOUD</text>
+                    <text x="250" y="460" class="text-name">ABDALLA</text>
+                    <text x="250" y="520" class="text-link" id="dallaText">Click here to explore my projects</text>
+                    <path class="outline" d="M 420 520 Q 460 520 480 540 L 480 580 L 420 580 Z" />
+                    <ellipse cx="450" cy="530" rx="25" ry="8" class="lid-detail" />
+                </svg>
             </div>
         </div>
 
@@ -715,7 +683,6 @@
             const centralDallah = document.getElementById('centralDallah');
             
             centralDallah.style.transform = 'scale(0.8)';
-            centralDallah.querySelector('.subtitle').textContent = 'Explore my projects';
             
             const positions = [
                 { x: -350, y: -250 },
@@ -742,7 +709,6 @@
             const centralDallah = document.getElementById('centralDallah');
             
             centralDallah.style.transform = 'scale(1)';
-            centralDallah.querySelector('.subtitle').textContent = 'Click the dallah to explore';
             
             projects.forEach(project => {
                 project.classList.remove('visible');
