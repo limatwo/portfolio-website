@@ -13,73 +13,166 @@
         }
 
         body {
-            margin: 0;
-            padding: 0;
+            background: linear-gradient(135deg, #D4A574 0%, #E8C39E 50%, #D4A574 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #3D2415;
             overflow: hidden;
             height: 100vh;
             position: relative;
-
-            /* Full-page background image */
-            background-image: url('Image.png'); /* your tent image */
-            background-repeat: no-repeat;
-            background-position: var(--bgX, 50%) var(--bgY, 50%);
-            background-size: cover;
-            background-attachment: fixed;
         }
 
-        /* Soft overlay to help readability */
-        .background-overlay {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at 50% 20%, rgba(255, 245, 220, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 50% 80%, rgba(140, 90, 50, 0.35) 0%, transparent 55%),
-                        rgba(240, 200, 150, 0.3);
-            pointer-events: none;
+        /* Desert sand dunes background pattern */
+        body::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: 
+                radial-gradient(ellipse 800px 300px at 20% 100%, rgba(196, 136, 91, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse 600px 250px at 80% 100%, rgba(196, 136, 91, 0.3) 0%, transparent 50%);
             z-index: 1;
         }
 
-        /* Heatwave shimmer overlay */
-        .heatwave {
-            position: fixed;
-            inset: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(255, 255, 255, 0.05) 0px,
-                rgba(255, 255, 255, 0.05) 2px,
-                transparent 4px,
-                transparent 8px
-            );
-            mix-blend-mode: soft-light;
-            opacity: 0.3;
-            filter: blur(3px);
-            animation: heatwave 12s infinite linear;
-            pointer-events: none;
+        .container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 2;
         }
 
-        @keyframes heatwave {
-            0% {
-                transform: translateY(0) skewY(0deg);
-                background-position: 0 0;
-            }
-            50% {
-                transform: translateY(-8px) skewY(1deg);
-                background-position: 0 20px;
-            }
-            100% {
-                transform: translateY(0) skewY(0deg);
-                background-position: 0 0;
-            }
+        /* Dallah-shaped central element */
+        .central-dallah {
+            width: 320px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
+            filter: drop-shadow(0 0 30px rgba(139, 69, 19, 0.4));
         }
 
-        .floating-particles {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            z-index: 3;
+        .central-dallah:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 50px rgba(139, 69, 19, 0.6));
+        }
+
+        /* SVG Dallah Shape */
+        .dallah-shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .dallah-svg {
+            width: 100%;
+            height: 100%;
+            fill: rgba(196, 136, 91, 0.4);
+            stroke: #8B4513;
+            stroke-width: 3;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+        }
+
+        /* Content inside dallah */
+        .dallah-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .dallah-image {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .central-dallah .title {
+            font-size: 15px;
+            text-align: center;
+            color: #8B4513;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .central-dallah .subtitle {
+            font-size: 11px;
+            text-align: center;
+            color: #5D4037;
+            margin-top: 5px;
+        }
+
+        /* Project Circles */
+        .project-circle {
+            width: 180px;
+            height: 180px;
+            border: 2px solid #8B4513;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, rgba(196, 136, 91, 0.25) 0%, rgba(139, 69, 19, 0.1) 100%);
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: absolute;
+            opacity: 0;
+            transform: scale(0);
+            box-shadow: 0 0 20px rgba(139, 69, 19, 0.2);
             pointer-events: none;
+            z-index: 50;
+        }
+
+        .project-circle.visible {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        .project-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(139, 69, 19, 0.4);
+            background: radial-gradient(circle, rgba(196, 136, 91, 0.35) 0%, rgba(139, 69, 19, 0.2) 100%);
+        }
+
+        .project-circle h3 {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #8B4513;
+            pointer-events: none;
+        }
+
+        .project-circle p {
+            font-size: 11px;
+            text-align: center;
+            color: #5D4037;
+            line-height: 1.3;
+            padding: 0 15px;
+            pointer-events: none;
+        }
+
+        /* Floating sand particles */
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
         }
 
         .particle {
@@ -109,125 +202,42 @@
             }
         }
 
-        .container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 5;
-        }
-
-        /* Central circle */
-        .central-circle {
-            width: 320px;
-            height: 320px;
-            border: 3px solid rgba(80, 40, 15, 0.9);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle, rgba(255, 245, 230, 0.35) 0%, rgba(139, 69, 19, 0.15) 100%);
-            backdrop-filter: blur(16px);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 0 30px rgba(139, 69, 19, 0.45);
-            overflow: hidden;
-        }
-
-        .central-circle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 60px rgba(139, 69, 19, 0.6);
-            background: radial-gradient(circle, rgba(255, 245, 230, 0.45) 0%, rgba(139, 69, 19, 0.25) 100%);
-        }
-
-        /* Background image inside the circle (for logo focus, optional) */
-        .Image-image {
+        /* Keywords Corner Box */
+        .keywords-corner {
             position: absolute;
-            inset: 0;
-            width: 110%;
-            height: 110%;
-            object-fit: cover;
-            transform: translateY(5%);
-            transition: transform 0.3s ease;
+            top: 30px;
+            right: 30px;
+            font-size: 12px;
+            color: #5D4037;
             z-index: 5;
+            background: rgba(212, 165, 116, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 69, 19, 0.4);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+            max-width: 250px;
         }
 
-        .central-circle:hover .Image-image {
-            transform: translateY(3%) scale(1.02);
-        }
-
-        .central-circle .title,
-        .central-circle .subtitle {
-            position: relative;
-            z-index: 20;
-            text-align: center;
-        }
-
-        .central-circle .title {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            margin-top: 130px; /* push text below the focus area of the image */
-        }
-
-        .central-circle .subtitle {
-            font-size: 13px;
-            margin-top: 6px;
-        }
-
-        /* Project circles */
-        .project-circle {
-            width: 180px;
-            height: 180px;
-            border: 2px solid rgba(80, 40, 15, 0.9);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle, rgba(255, 245, 230, 0.45) 0%, rgba(139, 69, 19, 0.2) 100%);
-            backdrop-filter: blur(18px);
-            cursor: pointer;
-            transition: all 0.4s ease;
-            position: absolute;
-            opacity: 0;
-            transform: scale(0);
-            box-shadow: 0 0 20px rgba(80, 40, 15, 0.3);
-            pointer-events: none;
-            z-index: 6;
-        }
-
-        .project-circle.visible {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: auto;
-        }
-
-        .project-circle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 40px rgba(80, 40, 15, 0.5);
-            background: radial-gradient(circle, rgba(255, 245, 230, 0.6) 0%, rgba(139, 69, 19, 0.25) 100%);
-        }
-
-        .project-circle h3 {
+        .keywords-corner h3 {
+            color: #8B4513;
             font-size: 14px;
-            font-weight: bold;
+            margin-bottom: 12px;
             text-align: center;
-            margin-bottom: 8px;
-            pointer-events: none;
+            border-bottom: 2px solid #8B4513;
+            padding-bottom: 8px;
         }
 
-        .project-circle p {
+        .keyword-tag {
+            display: inline-block;
+            background: rgba(139, 69, 19, 0.2);
+            color: #8B4513;
+            padding: 5px 12px;
+            margin: 4px;
+            border-radius: 20px;
             font-size: 11px;
-            text-align: center;
-            line-height: 1.3;
-            padding: 0 15px;
-            pointer-events: none;
+            font-weight: 500;
+            border: 1px solid rgba(139, 69, 19, 0.3);
         }
 
         .contact-info {
@@ -235,12 +245,13 @@
             bottom: 30px;
             left: 30px;
             font-size: 12px;
-            z-index: 6;
-            background: rgba(212, 165, 116, 0.65);
+            color: #8B4513;
+            z-index: 5;
+            background: rgba(212, 165, 116, 0.6);
             padding: 15px;
             border-radius: 10px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 69, 19, 0.4);
+            border: 2px solid rgba(139, 69, 19, 0.4);
         }
 
         .contact-info div {
@@ -249,32 +260,19 @@
         }
 
         .contact-info a {
+            color: #8B4513;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        .tech-stack {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            font-size: 12px;
-            text-align: right;
-            z-index: 6;
-            background: rgba(212, 165, 116, 0.65);
-            padding: 15px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 69, 19, 0.4);
-        }
-
-        .tech-stack div {
-            margin-bottom: 5px;
+        .contact-info a:hover {
+            color: #C4885B;
         }
 
         .modal {
             display: none;
             position: fixed;
-            z-index: 20;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
@@ -291,13 +289,20 @@
             border-radius: 20px;
             width: 80%;
             max-width: 600px;
-            box-shadow: 0 0 50px rgba(139, 69, 19, 0.4);
+            color: #3D2415;
+            box-shadow: 0 0 50px rgba(139, 69, 19, 0.3);
             max-height: 80vh;
             overflow-y: auto;
         }
 
-        .modal-content h2,
+        .modal-content h2 {
+            color: #8B4513;
+            margin-bottom: 15px;
+        }
+
         .modal-content h3 {
+            color: #8B4513;
+            margin-top: 15px;
             margin-bottom: 10px;
         }
 
@@ -308,18 +313,22 @@
 
         .modal-content li {
             margin-bottom: 8px;
+            color: #5D4037;
         }
 
         .modal-content a {
+            color: #8B4513;
             text-decoration: none;
             font-weight: bold;
         }
 
         .modal-content a:hover {
+            color: #C4885B;
             text-decoration: underline;
         }
 
         .close {
+            color: #8B4513;
             float: right;
             font-size: 28px;
             font-weight: bold;
@@ -327,31 +336,39 @@
             line-height: 20px;
         }
 
+        .close:hover {
+            color: #C4885B;
+        }
+
         .reset-btn {
             position: absolute;
             top: 30px;
             left: 30px;
-            background: rgba(196, 136, 91, 0.7);
-            border: 1px solid rgba(80, 40, 15, 0.9);
+            background: rgba(196, 136, 91, 0.6);
+            border: 2px solid #8B4513;
+            color: #8B4513;
             padding: 10px 20px;
             border-radius: 25px;
             cursor: pointer;
             font-size: 12px;
+            font-weight: 600;
             transition: all 0.3s ease;
-            z-index: 6;
-            backdrop-filter: blur(8px);
+            z-index: 5;
+            backdrop-filter: blur(10px);
         }
 
         .reset-btn:hover {
-            background: rgba(196, 136, 91, 0.9);
+            background: rgba(196, 136, 91, 0.8);
             transform: scale(1.05);
         }
 
+        /* Palm trees decorative elements */
         .palm-tree {
             position: absolute;
             font-size: 60px;
-            opacity: 0.4;
-            z-index: 5;
+            opacity: 0.3;
+            z-index: 1;
+            color: #6B8E23;
         }
 
         .palm-left {
@@ -366,59 +383,26 @@
             transform: rotate(10deg);
         }
 
-        /* Light vs dark text themes (auto-selected via JS) */
-        body.light-text,
-        body.light-text a {
-            color: #2c1408;
-        }
-
-        body.dark-text,
-        body.dark-text a {
-            color: #fdf6e3;
-        }
-
-        body.dark-text .central-circle,
-        body.dark-text .project-circle,
-        body.dark-text .contact-info,
-        body.dark-text .tech-stack,
-        body.dark-text .reset-btn {
-            border-color: rgba(255, 240, 220, 0.9);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-        }
-
-        body.dark-text .close {
-            color: #fdf6e3;
-        }
-
-        body.dark-text .modal-content {
-            color: #3D2415;
-        }
-
         @media (max-width: 768px) {
-            .central-circle {
-                width: 260px;
-                height: 260px;
+            .central-dallah {
+                width: 250px;
+                height: 320px;
             }
 
-            .central-circle .title {
-                margin-top: 110px;
-                font-size: 16px;
+            .dallah-image {
+                width: 110px;
+                height: 110px;
             }
-
-            .Image-image {
-                width: 120%;
-                height: 120%;
-            }
-
+            
             .project-circle {
                 width: 140px;
                 height: 140px;
             }
-
+            
             .project-circle h3 {
                 font-size: 12px;
             }
-
+            
             .project-circle p {
                 font-size: 10px;
             }
@@ -433,26 +417,43 @@
                 display: none;
             }
 
-            .contact-info,
-            .tech-stack {
+            .contact-info, .keywords-corner {
                 font-size: 10px;
                 padding: 10px;
+            }
+
+            .keywords-corner {
+                max-width: 180px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- overlays & effects -->
-    <div class="background-overlay"></div>
-    <div class="heatwave"></div>
     <div class="floating-particles" id="particles"></div>
-
-    <!-- Decorative palm emojis -->
+    
+    <!-- Decorative Palm Trees -->
     <div class="palm-tree palm-left">🌴</div>
     <div class="palm-tree palm-right">🌴</div>
-
+    
     <button class="reset-btn" onclick="resetView()">↺ Reset View</button>
-
+    
+    <!-- Keywords Corner -->
+    <div class="keywords-corner">
+        <h3>Skills & Keywords</h3>
+        <span class="keyword-tag">CNC</span>
+        <span class="keyword-tag">CAD</span>
+        <span class="keyword-tag">Python</span>
+        <span class="keyword-tag">Machine Learning</span>
+        <span class="keyword-tag">Docker</span>
+        <span class="keyword-tag">Kubernetes</span>
+        <span class="keyword-tag">TensorFlow</span>
+        <span class="keyword-tag">ROS</span>
+        <span class="keyword-tag">MATLAB</span>
+        <span class="keyword-tag">Ansible</span>
+        <span class="keyword-tag">DevOps</span>
+        <span class="keyword-tag">Computer Vision</span>
+    </div>
+    
     <div class="contact-info">
         <div>📧 mahmoudabdalla@cmail.carleton.ca</div>
         <div>📱 +9660509833970</div>
@@ -460,17 +461,57 @@
         <div><a href="https://github.com/limatwo" target="_blank"><i class="fab fa-github"></i> GitHub</a></div>
     </div>
 
-    <div class="tech-stack">
-        <div>AI/ML • DevOps • Robotics</div>
-        <div>Python • Docker • Kubernetes</div>
-        <div>TensorFlow • Jenkins</div>
-    </div>
-
     <div class="container">
-        <div class="central-circle" id="centralCircle">
-            <img src="Image.png" alt="Mahmoud Abdalla Desert Image" class="Image-image">
-            <div class="title">MAHMOUD ABDALLA</div>
-            <div class="subtitle">AI • DevOps • Robotics Engineer — click to explore projects</div>
+        <!-- Dallah-shaped central element -->
+        <div class="central-dallah" id="centralDallah">
+            <!-- SVG Dallah Shape -->
+            <svg class="dallah-shape" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+                <!-- Dallah body (pot shape) -->
+                <path class="dallah-svg" d="
+                    M 100 50
+                    Q 70 50, 65 80
+                    L 60 150
+                    Q 60 180, 80 190
+                    L 120 190
+                    Q 140 180, 140 150
+                    L 135 80
+                    Q 130 50, 100 50
+                    Z
+                    M 100 40
+                    Q 95 40, 95 35
+                    L 95 20
+                    Q 95 15, 100 10
+                    Q 105 15, 105 20
+                    L 105 35
+                    Q 105 40, 100 40
+                    Z
+                    M 140 100
+                    Q 155 100, 160 110
+                    Q 160 120, 155 125
+                    Q 150 128, 145 125
+                    L 140 120
+                    Z
+                    M 60 100
+                    Q 45 100, 40 110
+                    Q 40 120, 45 125
+                    Q 50 128, 55 125
+                    L 60 120
+                    Z
+                    M 80 195
+                    L 120 195
+                    Q 125 200, 120 205
+                    L 80 205
+                    Q 75 200, 80 195
+                    Z
+                "/>
+            </svg>
+            
+            <!-- Content -->
+            <div class="dallah-content">
+                <img src="dallah.png" alt="Mahmoud Abdalla" class="dallah-image">
+                <div class="title">AI • DevOps • Robotics Engineer</div>
+                <div class="subtitle">Click the dallah to explore</div>
+            </div>
         </div>
 
         <!-- Project Circles -->
@@ -515,7 +556,8 @@
 
     <script>
         let projectsExpanded = false;
-
+        
+        // Project data
         const projectData = {
             'reconfigurable-robot': {
                 title: 'Reconfigurable Robot for Security Applications',
@@ -623,8 +665,8 @@
                 `
             }
         };
-
-        // Floating sand particles
+        
+        // Create floating sand particles
         function createParticles() {
             const particles = document.getElementById('particles');
             for (let i = 0; i < 30; i++) {
@@ -637,17 +679,44 @@
             }
         }
 
-        // Expand project circles around the central circle
+        // Initialize event listeners when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Central dallah click
+            document.getElementById('centralDallah').addEventListener('click', expandProjects);
+            
+            // Project circle clicks
+            document.querySelectorAll('.project-circle').forEach(circle => {
+                circle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const projectType = this.getAttribute('data-project');
+                    openModal(projectType);
+                });
+            });
+            
+            // Close modal events
+            document.querySelector('.close').addEventListener('click', closeModal);
+            
+            // Close modal when clicking outside
+            document.getElementById('projectModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+            
+            // Initialize particles
+            createParticles();
+        });
+
         function expandProjects() {
             if (projectsExpanded) return;
-
+            
             projectsExpanded = true;
             const projects = document.querySelectorAll('.project-circle');
-            const centralCircle = document.getElementById('centralCircle');
-
-            centralCircle.style.transform = 'scale(0.9)';
-            centralCircle.querySelector('.subtitle').textContent = 'Explore my projects';
-
+            const centralDallah = document.getElementById('centralDallah');
+            
+            centralDallah.style.transform = 'scale(0.8)';
+            centralDallah.querySelector('.subtitle').textContent = 'Explore my projects';
+            
             const positions = [
                 { x: -350, y: -250 },
                 { x: 350, y: -250 },
@@ -663,18 +732,18 @@
                     project.style.top = `calc(50% + ${positions[index].y}px)`;
                     project.style.transform = 'translate(-50%, -50%) scale(1)';
                     project.classList.add('visible');
-                }, index * 120);
+                }, index * 100);
             });
         }
 
         function resetView() {
             projectsExpanded = false;
             const projects = document.querySelectorAll('.project-circle');
-            const centralCircle = document.getElementById('centralCircle');
-
-            centralCircle.style.transform = 'scale(1)';
-            centralCircle.querySelector('.subtitle').textContent = 'AI • DevOps • Robotics Engineer — click to explore projects';
-
+            const centralDallah = document.getElementById('centralDallah');
+            
+            centralDallah.style.transform = 'scale(1)';
+            centralDallah.querySelector('.subtitle').textContent = 'Click the dallah to explore';
+            
             projects.forEach(project => {
                 project.classList.remove('visible');
                 project.style.transform = 'translate(-50%, -50%) scale(0)';
@@ -684,7 +753,7 @@
         function openModal(projectType) {
             const modal = document.getElementById('projectModal');
             const content = document.getElementById('modalContent');
-
+            
             if (projectData[projectType]) {
                 content.innerHTML = projectData[projectType].details;
                 modal.style.display = 'block';
@@ -694,73 +763,6 @@
         function closeModal() {
             document.getElementById('projectModal').style.display = 'none';
         }
-
-        // Simple parallax using mouse movement
-        function initParallax() {
-            document.addEventListener('mousemove', (e) => {
-                const x = (e.clientX / window.innerWidth - 0.5) * 6; // range ~[-3,3]
-                const y = (e.clientY / window.innerHeight - 0.5) * 4; // range ~[-2,2]
-                document.body.style.setProperty('--bgX', `${50 - x}%`);
-                document.body.style.setProperty('--bgY', `${50 - y}%`);
-            });
-        }
-
-        // Auto-detect brightness of the background image and choose light/dark text theme
-        function initAutoTextContrast() {
-            const img = new Image();
-            img.src = getComputedStyle(document.body).backgroundImage.replace(/url\((['"])?(.*?)\1\)/, '$2');
-            img.crossOrigin = 'anonymous';
-
-            img.onload = function () {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                canvas.width = 50;
-                canvas.height = 50;
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-
-                let r, g, b, avg;
-                let colorSum = 0;
-                for (let x = 0, len = data.length; x < len; x += 4) {
-                    r = data[x];
-                    g = data[x + 1];
-                    b = data[x + 2];
-                    avg = (r + g + b) / 3;
-                    colorSum += avg;
-                }
-                const brightness = colorSum / (canvas.width * canvas.height);
-
-                if (brightness > 150) {
-                    document.body.classList.add('light-text');
-                } else {
-                    document.body.classList.add('dark-text');
-                }
-            };
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            createParticles();
-            initParallax();
-            initAutoTextContrast();
-
-            document.getElementById('centralCircle').addEventListener('click', expandProjects);
-
-            document.querySelectorAll('.project-circle').forEach(circle => {
-                circle.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    const projectType = this.getAttribute('data-project');
-                    openModal(projectType);
-                });
-            });
-
-            document.querySelector('.close').addEventListener('click', closeModal);
-
-            document.getElementById('projectModal').addEventListener('click', function (e) {
-                if (e.target === this) {
-                    closeModal();
-                }
-            });
-        });
     </script>
 </body>
 </html>
