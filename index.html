@@ -1,734 +1,643 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahmoud Abdalla - AI DevOps & Robotics Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahmoud Abdalla - AI DevOps & Robotics Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            background: linear-gradient(135deg, #D4A574 0%, #E8C39E 50%, #D4A574 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #3D2415;
-            overflow: hidden;
-            height: 100vh;
-            position: relative;
-        }
+    /* ✅ Put your generated image at: /images/desert-tent-bg.png (or change the path below) */
+    body {
+      background:
+        linear-gradient(rgba(212, 165, 116, 0.65), rgba(212, 165, 116, 0.65)),
+        url("images/desert-tent-bg.png") center / cover no-repeat fixed;
 
-        /* Desert sand dunes background pattern */
-        body::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40%;
-            background: 
-                radial-gradient(ellipse 800px 300px at 20% 100%, rgba(196, 136, 91, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse 600px 250px at 80% 100%, rgba(196, 136, 91, 0.3) 0%, transparent 50%);
-            z-index: 1;
-        }
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #3D2415;
+      overflow: hidden;
+      height: 100vh;
+      position: relative;
+    }
 
-        .container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-        }
+    /* Desert sand dunes overlay */
+    body::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background:
+        radial-gradient(ellipse 800px 300px at 20% 100%, rgba(196, 136, 91, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse 600px 250px at 80% 100%, rgba(196, 136, 91, 0.3) 0%, transparent 50%);
+      z-index: 1;
+      opacity: 0.55;
+      pointer-events: none;
+    }
 
-        /* Dallah-shaped central element */
-        .central-dallah {
-            width: 400px;
-            height: 480px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 10;
-            filter: drop-shadow(0 0 30px rgba(139, 69, 19, 0.4));
-        }
+    .container {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+    }
 
-        .central-dallah:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 50px rgba(139, 69, 19, 0.6));
-        }
+    /* Dallah-shaped central element */
+    .central-dallah {
+      width: 400px;
+      height: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 10;
+      filter: drop-shadow(0 0 30px rgba(139, 69, 19, 0.4));
+      backdrop-filter: blur(4px);
+      background: rgba(232, 195, 158, 0.18);
+      border-radius: 50%;
+    }
 
-        /* SVG Dallah Shape */
-        .dallah-svg-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
+    .central-dallah:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 50px rgba(139, 69, 19, 0.6));
+    }
 
-        .dallah-svg-container svg {
-            width: 100%;
-            height: 100%;
-        }
+    .dallah-svg-container { width: 100%; height: 100%; position: relative; }
+    .dallah-svg-container svg { width: 100%; height: 100%; }
 
-        /* Project Circles */
-        .project-circle {
-            width: 180px;
-            height: 180px;
-            border: 2px solid #8B4513;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle, rgba(196, 136, 91, 0.25) 0%, rgba(139, 69, 19, 0.1) 100%);
-            backdrop-filter: blur(8px);
-            cursor: pointer;
-            transition: all 0.4s ease;
-            position: absolute;
-            opacity: 0;
-            transform: scale(0);
-            box-shadow: 0 0 20px rgba(139, 69, 19, 0.2);
-            pointer-events: none;
-            z-index: 50;
-        }
+    /* Project Circles */
+    .project-circle {
+      width: 180px;
+      height: 180px;
+      border: 2px solid #8B4513;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(196, 136, 91, 0.25) 0%, rgba(139, 69, 19, 0.1) 100%);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      transition: all 0.4s ease;
+      position: absolute;
+      opacity: 0;
+      transform: scale(0);
+      box-shadow: 0 0 20px rgba(139, 69, 19, 0.2);
+      pointer-events: none;
+      z-index: 50;
+    }
 
-        .project-circle.visible {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: auto;
-        }
+    .project-circle.visible {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
 
-        .project-circle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 40px rgba(139, 69, 19, 0.4);
-            background: radial-gradient(circle, rgba(196, 136, 91, 0.35) 0%, rgba(139, 69, 19, 0.2) 100%);
-        }
+    .project-circle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(139, 69, 19, 0.4);
+      background: radial-gradient(circle, rgba(196, 136, 91, 0.35) 0%, rgba(139, 69, 19, 0.2) 100%);
+    }
 
-        .project-circle h3 {
-            font-size: 14px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 8px;
-            color: #8B4513;
-            pointer-events: none;
-        }
+    .project-circle h3 {
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 8px;
+      color: #8B4513;
+      pointer-events: none;
+    }
 
-        .project-circle p {
-            font-size: 11px;
-            text-align: center;
-            color: #5D4037;
-            line-height: 1.3;
-            padding: 0 15px;
-            pointer-events: none;
-        }
+    .project-circle p {
+      font-size: 11px;
+      text-align: center;
+      color: #5D4037;
+      line-height: 1.3;
+      padding: 0 15px;
+      pointer-events: none;
+    }
 
-        /* Floating sand particles */
-        .floating-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
+    /* Floating sand particles */
+    .floating-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 2;
+      pointer-events: none;
+    }
 
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: #C4885B;
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: float 8s infinite linear;
-        }
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #C4885B;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: float 8s infinite linear;
+    }
 
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.4;
-            }
-            90% {
-                opacity: 0.4;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(50px) rotate(360deg);
-                opacity: 0;
-            }
-        }
+    @keyframes float {
+      0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.4; }
+      90% { opacity: 0.4; }
+      100% { transform: translateY(-100vh) translateX(50px) rotate(360deg); opacity: 0; }
+    }
 
-        /* Keywords Corner Box */
-        .keywords-corner {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            font-size: 12px;
-            color: #5D4037;
-            z-index: 5;
-            background: rgba(212, 165, 116, 0.6);
-            padding: 20px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(139, 69, 19, 0.4);
-            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
-            max-width: 250px;
-        }
+    /* Keywords Corner Box */
+    .keywords-corner {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 12px;
+      color: #5D4037;
+      z-index: 6;
+      background: rgba(212, 165, 116, 0.6);
+      padding: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(139, 69, 19, 0.4);
+      box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+      max-width: 250px;
+    }
 
-        .keywords-corner h3 {
-            color: #8B4513;
-            font-size: 14px;
-            margin-bottom: 12px;
-            text-align: center;
-            border-bottom: 2px solid #8B4513;
-            padding-bottom: 8px;
-        }
+    .keywords-corner h3 {
+      color: #8B4513;
+      font-size: 14px;
+      margin-bottom: 12px;
+      text-align: center;
+      border-bottom: 2px solid #8B4513;
+      padding-bottom: 8px;
+    }
 
-        .keyword-tag {
-            display: inline-block;
-            background: rgba(139, 69, 19, 0.2);
-            color: #8B4513;
-            padding: 5px 12px;
-            margin: 4px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 500;
-            border: 1px solid rgba(139, 69, 19, 0.3);
-        }
+    .keyword-tag {
+      display: inline-block;
+      background: rgba(139, 69, 19, 0.2);
+      color: #8B4513;
+      padding: 5px 12px;
+      margin: 4px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      border: 1px solid rgba(139, 69, 19, 0.3);
+    }
 
-        .contact-info {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            font-size: 12px;
-            color: #8B4513;
-            z-index: 5;
-            background: rgba(212, 165, 116, 0.6);
-            padding: 15px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(139, 69, 19, 0.4);
-        }
+    .contact-info {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      font-size: 12px;
+      color: #8B4513;
+      z-index: 6;
+      background: rgba(212, 165, 116, 0.6);
+      padding: 15px;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(139, 69, 19, 0.4);
+    }
 
-        .contact-info div {
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
+    .contact-info div { margin-bottom: 8px; line-height: 1.5; }
+    .contact-info a { color: #8B4513; text-decoration: none; transition: color 0.3s ease; }
+    .contact-info a:hover { color: #C4885B; }
 
-        .contact-info a {
-            color: #8B4513;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(61, 36, 21, 0.8);
+      backdrop-filter: blur(5px);
+    }
 
-        .contact-info a:hover {
-            color: #C4885B;
-        }
+    .modal-content {
+      background: linear-gradient(135deg, #E8C39E 0%, #D4A574 100%);
+      margin: 5% auto;
+      padding: 30px;
+      border: 2px solid #8B4513;
+      border-radius: 20px;
+      width: 80%;
+      max-width: 600px;
+      color: #3D2415;
+      box-shadow: 0 0 50px rgba(139, 69, 19, 0.3);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(61, 36, 21, 0.8);
-            backdrop-filter: blur(5px);
-        }
+    .modal-content h2 { color: #8B4513; margin-bottom: 15px; }
+    .modal-content h3 { color: #8B4513; margin-top: 15px; margin-bottom: 10px; }
+    .modal-content ul { margin-left: 20px; margin-bottom: 15px; }
+    .modal-content li { margin-bottom: 8px; color: #5D4037; }
+    .modal-content a { color: #8B4513; text-decoration: none; font-weight: bold; }
+    .modal-content a:hover { color: #C4885B; text-decoration: underline; }
 
-        .modal-content {
-            background: linear-gradient(135deg, #E8C39E 0%, #D4A574 100%);
-            margin: 5% auto;
-            padding: 30px;
-            border: 2px solid #8B4513;
-            border-radius: 20px;
-            width: 80%;
-            max-width: 600px;
-            color: #3D2415;
-            box-shadow: 0 0 50px rgba(139, 69, 19, 0.3);
-            max-height: 80vh;
-            overflow-y: auto;
-        }
+    .close {
+      color: #8B4513;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 20px;
+    }
 
-        .modal-content h2 {
-            color: #8B4513;
-            margin-bottom: 15px;
-        }
+    .close:hover { color: #C4885B; }
 
-        .modal-content h3 {
-            color: #8B4513;
-            margin-top: 15px;
-            margin-bottom: 10px;
-        }
+    .reset-btn {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      background: rgba(196, 136, 91, 0.6);
+      border: 2px solid #8B4513;
+      color: #8B4513;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      z-index: 6;
+      backdrop-filter: blur(10px);
+    }
 
-        .modal-content ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
+    .reset-btn:hover {
+      background: rgba(196, 136, 91, 0.8);
+      transform: scale(1.05);
+    }
 
-        .modal-content li {
-            margin-bottom: 8px;
-            color: #5D4037;
-        }
+    /* Palm trees decorative elements */
+    .palm-tree {
+      position: absolute;
+      font-size: 60px;
+      opacity: 0.3;
+      z-index: 2;
+      color: #6B8E23;
+      pointer-events: none;
+    }
 
-        .modal-content a {
-            color: #8B4513;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    .palm-left { bottom: 50px; left: 100px; transform: rotate(-10deg); }
+    .palm-right { bottom: 50px; right: 100px; transform: rotate(10deg); }
 
-        .modal-content a:hover {
-            color: #C4885B;
-            text-decoration: underline;
-        }
-
-        .close {
-            color: #8B4513;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            line-height: 20px;
-        }
-
-        .close:hover {
-            color: #C4885B;
-        }
-
-        .reset-btn {
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            background: rgba(196, 136, 91, 0.6);
-            border: 2px solid #8B4513;
-            color: #8B4513;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            z-index: 5;
-            backdrop-filter: blur(10px);
-        }
-
-        .reset-btn:hover {
-            background: rgba(196, 136, 91, 0.8);
-            transform: scale(1.05);
-        }
-
-        /* Palm trees decorative elements */
-        .palm-tree {
-            position: absolute;
-            font-size: 60px;
-            opacity: 0.3;
-            z-index: 1;
-            color: #6B8E23;
-        }
-
-        .palm-left {
-            bottom: 50px;
-            left: 100px;
-            transform: rotate(-10deg);
-        }
-
-        .palm-right {
-            bottom: 50px;
-            right: 100px;
-            transform: rotate(10deg);
-        }
-
-        @media (max-width: 768px) {
-            .central-dallah {
-                width: 300px;
-                height: 360px;
-            }
-            
-            .project-circle {
-                width: 140px;
-                height: 140px;
-            }
-            
-            .project-circle h3 {
-                font-size: 12px;
-            }
-            
-            .project-circle p {
-                font-size: 10px;
-            }
-
-            .modal-content {
-                width: 95%;
-                margin: 10% auto;
-                padding: 20px;
-            }
-
-            .palm-tree {
-                display: none;
-            }
-
-            .contact-info, .keywords-corner {
-                font-size: 10px;
-                padding: 10px;
-            }
-
-            .keywords-corner {
-                max-width: 180px;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .central-dallah { width: 300px; height: 360px; }
+      .project-circle { width: 140px; height: 140px; }
+      .project-circle h3 { font-size: 12px; }
+      .project-circle p { font-size: 10px; }
+      .modal-content { width: 95%; margin: 10% auto; padding: 20px; }
+      .palm-tree { display: none; }
+      .contact-info, .keywords-corner { font-size: 10px; padding: 10px; }
+      .keywords-corner { max-width: 180px; }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="floating-particles" id="particles"></div>
-    
-    <!-- Decorative Palm Trees -->
-    <div class="palm-tree palm-left">🌴</div>
-    <div class="palm-tree palm-right">🌴</div>
-    
-    <button class="reset-btn" onclick="resetView()">↺ Reset View</button>
-    
-    <!-- Keywords Corner -->
-    <div class="keywords-corner">
-        <h3>Skills & Keywords</h3>
-        <span class="keyword-tag">CNC</span>
-        <span class="keyword-tag">CAD</span>
-        <span class="keyword-tag">Python</span>
-        <span class="keyword-tag">Machine Learning</span>
-        <span class="keyword-tag">Docker</span>
-        <span class="keyword-tag">Kubernetes</span>
-        <span class="keyword-tag">TensorFlow</span>
-        <span class="keyword-tag">ROS</span>
-        <span class="keyword-tag">MATLAB</span>
-        <span class="keyword-tag">Ansible</span>
-        <span class="keyword-tag">DevOps</span>
-        <span class="keyword-tag">Computer Vision</span>
-    </div>
-    
-    <div class="contact-info">
-        <div>📧 mahmoudabdalla@cmail.carleton.ca</div>
-        <div>📱 +9660509833970</div>
-        <div><a href="https://linkedin.com/in/mahmoud-abdalla-02681775/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></div>
-        <div><a href="https://github.com/limatwo" target="_blank"><i class="fab fa-github"></i> GitHub</a></div>
-    </div>
+  <div class="floating-particles" id="particles"></div>
 
-    <div class="container">
-        <!-- Dallah-shaped central element -->
-        <div class="central-dallah" id="centralDallah">
-            <div class="dallah-svg-container">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" width="500" height="600">
-                    <style>
-                        .outline { fill: #E8C39E; stroke: #8B4513; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
-                        .text-name { font-family: 'Courier New', Courier, serif; font-weight: bold; font-size: 36px; text-anchor: middle; fill: #8B4513; letter-spacing: 2px; }
-                        .text-link { font-family: sans-serif; font-size: 16px; text-anchor: middle; fill: #8B4513; text-decoration: underline; cursor: pointer; }
-                        .text-link:hover { fill: #5D4037; }
-                        .lid-detail { fill: none; stroke: #8B4513; stroke-width: 3; }
-                    </style>
-                    <path class="outline" d="
-                        M 250 130 
-                        C 280 130, 310 160, 320 200 
-                        C 330 240, 300 250, 300 300 
-                        C 300 380, 380 400, 380 500 
-                        C 380 560, 320 580, 250 580 
-                        C 180 580, 120 560, 120 500 
-                        C 120 400, 200 380, 200 300 
-                        C 200 250, 170 240, 180 200 
-                        C 190 160, 220 130, 250 130 
-                        Z" />
-                    <path class="outline" d="
-                        M 235 130 
-                        L 235 110 
-                        C 220 100, 220 70, 250 50 
-                        C 280 70, 280 100, 265 110 
-                        L 265 130" />
-                    
-                    <line x1="235" y1="130" x2="265" y2="130" class="lid-detail" />
-                    <path class="lid-detail" d="M 180 200 Q 250 220 320 200" />
-                    
-                    <path class="outline" d="
-                        M 180 230 
-                        Q 100 200, 60 180 
-                        Q 40 170, 20 180 
-                        Q 40 200, 100 260 
-                        Q 140 300, 180 320" 
-                        fill="#E8C39E"/>
-                    <path class="outline" d="
-                        M 320 230 
-                        Q 380 230, 400 260 
-                        Q 420 290, 420 350 
-                        Q 420 410, 380 450 
-                        Q 370 460, 360 450" 
-                        fill="none" />
-                        
-                    <path class="lid-detail" d="
-                        M 320 250 
-                        Q 350 250, 370 270 
-                        Q 390 300, 390 350 
-                        Q 390 400, 365 425" 
-                        fill="none" />
-                    <text x="250" y="420" class="text-name">MAHMOUD</text>
-                    <text x="250" y="460" class="text-name">ABDALLA</text>
-                    <text x="250" y="520" class="text-link" id="dallaText">Click here to explore my projects</text>
-                    <path class="outline" d="M 420 520 Q 460 520 480 540 L 480 580 L 420 580 Z" />
-                    <ellipse cx="450" cy="530" rx="25" ry="8" class="lid-detail" />
-                </svg>
-            </div>
-        </div>
+  <!-- Decorative Palm Trees -->
+  <div class="palm-tree palm-left">🌴</div>
+  <div class="palm-tree palm-right">🌴</div>
 
-        <!-- Project Circles -->
-        <div class="project-circle" id="project1" data-project="reconfigurable-robot">
-            <h3>Reconfigurable Robot</h3>
-            <p>Security applications with adaptive workspace manipulation</p>
-        </div>
+  <button class="reset-btn" onclick="resetView()">↺ Reset View</button>
 
-        <div class="project-circle" id="project2" data-project="face-mask-detection">
-            <h3>Face Mask Detection</h3>
-            <p>Real-time AI system using OpenCV & TensorFlow</p>
-        </div>
+  <!-- Keywords Corner -->
+  <div class="keywords-corner">
+    <h3>Skills & Keywords</h3>
+    <span class="keyword-tag">CNC</span>
+    <span class="keyword-tag">CAD</span>
+    <span class="keyword-tag">Python</span>
+    <span class="keyword-tag">Machine Learning</span>
+    <span class="keyword-tag">Docker</span>
+    <span class="keyword-tag">Kubernetes</span>
+    <span class="keyword-tag">TensorFlow</span>
+    <span class="keyword-tag">ROS</span>
+    <span class="keyword-tag">MATLAB</span>
+    <span class="keyword-tag">Ansible</span>
+    <span class="keyword-tag">DevOps</span>
+    <span class="keyword-tag">Computer Vision</span>
+  </div>
 
-        <div class="project-circle" id="project3" data-project="mine-detection-robot">
-            <h3>Mine Detection Robot</h3>
-            <p>Autonomous landmine detection & deactivation system</p>
-        </div>
+  <div class="contact-info">
+    <div>📧 mahmoudabdalla@cmail.carleton.ca</div>
+    <div>📱 +9660509833970</div>
+    <div><a href="https://linkedin.com/in/mahmoud-abdalla-02681775/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></div>
+    <div><a href="https://github.com/limatwo" target="_blank"><i class="fab fa-github"></i> GitHub</a></div>
+  </div>
 
-        <div class="project-circle" id="project4" data-project="connectome-fingerprinting">
-            <h3>Connectome Fingerprinting</h3>
-            <p>fMRI data analysis for brain connectivity patterns</p>
-        </div>
+  <div class="container">
+    <!-- Dallah-shaped central element -->
+    <div class="central-dallah" id="centralDallah">
+      <div class="dallah-svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" width="500" height="600">
+          <style>
+            .outline { fill: #E8C39E; stroke: #8B4513; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+            .text-name { font-family: 'Courier New', Courier, serif; font-weight: bold; font-size: 36px; text-anchor: middle; fill: #8B4513; letter-spacing: 2px; }
+            .text-link { font-family: sans-serif; font-size: 16px; text-anchor: middle; fill: #8B4513; text-decoration: underline; cursor: pointer; }
+            .text-link:hover { fill: #5D4037; }
+            .lid-detail { fill: none; stroke: #8B4513; stroke-width: 3; }
+          </style>
 
-        <div class="project-circle" id="project5" data-project="ant-colony-modeling">
-            <h3>Ant Colony Modeling</h3>
-            <p>Biological simulation of Pheidole caste ratios</p>
-        </div>
+          <path class="outline" d="
+            M 250 130
+            C 280 130, 310 160, 320 200
+            C 330 240, 300 250, 300 300
+            C 300 380, 380 400, 380 500
+            C 380 560, 320 580, 250 580
+            C 180 580, 120 560, 120 500
+            C 120 400, 200 380, 200 300
+            C 200 250, 170 240, 180 200
+            C 190 160, 220 130, 250 130
+            Z" />
 
-        <div class="project-circle" id="project6" data-project="ansible-config-management">
-            <h3>Ansible Config Management</h3>
-            <p>Enterprise Infrastructure as Code with automated deployments</p>
-        </div>
+          <path class="outline" d="
+            M 235 130
+            L 235 110
+            C 220 100, 220 70, 250 50
+            C 280 70, 280 100, 265 110
+            L 265 130" />
+
+          <line x1="235" y1="130" x2="265" y2="130" class="lid-detail" />
+          <path class="lid-detail" d="M 180 200 Q 250 220 320 200" />
+
+          <path class="outline" d="
+            M 180 230
+            Q 100 200, 60 180
+            Q 40 170, 20 180
+            Q 40 200, 100 260
+            Q 140 300, 180 320"
+            fill="#E8C39E" />
+
+          <path class="outline" d="
+            M 320 230
+            Q 380 230, 400 260
+            Q 420 290, 420 350
+            Q 420 410, 380 450
+            Q 370 460, 360 450"
+            fill="none" />
+
+          <path class="lid-detail" d="
+            M 320 250
+            Q 350 250, 370 270
+            Q 390 300, 390 350
+            Q 390 400, 365 425"
+            fill="none" />
+
+          <text x="250" y="420" class="text-name">MAHMOUD</text>
+          <text x="250" y="460" class="text-name">ABDALLA</text>
+          <text x="250" y="520" class="text-link" id="dallaText">Click here to explore my projects</text>
+
+          <path class="outline" d="M 420 520 Q 460 520 480 540 L 480 580 L 420 580 Z" />
+          <ellipse cx="450" cy="530" rx="25" ry="8" class="lid-detail" />
+        </svg>
+      </div>
     </div>
 
-    <!-- Modal -->
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="modalContent"></div>
-        </div>
+    <!-- Project Circles -->
+    <div class="project-circle" id="project1" data-project="reconfigurable-robot">
+      <h3>Reconfigurable Robot</h3>
+      <p>Security applications with adaptive workspace manipulation</p>
     </div>
 
-    <script>
-        let projectsExpanded = false;
-        
-        // Project data
-        const projectData = {
-            'reconfigurable-robot': {
-                title: 'Reconfigurable Robot for Security Applications',
-                details: `
-                    <h2>Master's Project - Carleton University (2011-2012)</h2>
-                    <p><strong>Objective:</strong> Developed for Allen Vanguard Corporation</p>
-                    <h3>Key Achievements:</h3>
-                    <ul>
-                        <li>Identified manipulator arm shortcomings and set new requirements</li>
-                        <li>Modeled the arm in MATLAB Simulink Sim-mechanics with 3D animation</li>
-                        <li>Introduced lockable passive joints to increase workspace</li>
-                        <li>Calculated optimal passive joint length for mobile base reconfiguration</li>
-                    </ul>
-                    <p><strong>Technologies:</strong> MATLAB, Simulink, Sim-mechanics, Virtual Reality Toolbox, SolidWorks</p>
-                    <p><strong>📄 Project Report:</strong> <a href="https://tinyurl.com/246v6cjy" target="_blank">View Full Report</a></p>
-                `
-            },
-            'face-mask-detection': {
-                title: 'Face Mask Detection System',
-                details: `
-                    <h2>AI Computer Vision Project (2024)</h2>
-                    <h3>Key Features:</h3>
-                    <ul>
-                        <li>Real-time face mask detection using Python and OpenCV</li>
-                        <li>Deep learning implementation with TensorFlow and MobileNet v2</li>
-                        <li>Achieved 95%+ accuracy in live video classification</li>
-                        <li>Deployment-ready AI-powered application</li>
-                    </ul>
-                    <p><strong>Technologies:</strong> Python, OpenCV, TensorFlow, MobileNet v2, Computer Vision</p>
-                    <p><strong>Impact:</strong> Real-world application for health safety compliance</p>
-                    <p><strong>💻 GitHub Repository:</strong> <a href="https://github.com/limatwo/facemask-detection/tree/main" target="_blank">View Code</a></p>
-                `
-            },
-            'mine-detection-robot': {
-                title: 'Robot for Mines Detection and Deactivation',
-                details: `
-                    <h2>Bachelor's Graduation Project (2008-2009)</h2>
-                    <h3>Innovations:</h3>
-                    <ul>
-                        <li>Designed new differential mobile base for improved terrain navigation</li>
-                        <li>Implemented new manipulator for landmine removal</li>
-                        <li>Applied noise-eliminating magnetic coil tube circuit design</li>
-                        <li>Built solar tracker with orthogonal stepper motors for power</li>
-                    </ul>
-                    <p><strong>Technologies:</strong> Microcontroller Programming, Circuit Design, Mechanical Design, Solar Power Systems</p>
-                    <p><strong>Impact:</strong> Enhanced safety for explosive ordnance disposal operations</p>
-                    <p><strong>📄 Project Report:</strong> <a href="https://1drv.ms/b/s!AoVtOIbCvWxqhM4QTL2CqMX1RN7VhQ?e=xdei0Z" target="_blank">View Full Report</a></p>
-                `
-            },
-            'connectome-fingerprinting': {
-                title: 'Fingerprinting Connectome Project',
-                details: `
-                    <h2>McGill University Research (2020)</h2>
-                    <h3>Research Focus:</h3>
-                    <ul>
-                        <li>Preprocessed Human Connectome Project (HCP) fMRI data</li>
-                        <li>Applied statistical methods to achieve brain connectivity correlations</li>
-                        <li>Developed subject identification algorithms between sessions</li>
-                        <li>Optimized functional connectivity analysis with minimal data</li>
-                    </ul>
-                    <p><strong>Technologies:</strong> Python, fMRI Analysis, Statistical Methods, Data Preprocessing</p>
-                    <p><strong>Impact:</strong> Advanced understanding of brain connectivity patterns</p>
-                    <p><strong>📄 Project Report:</strong> <a href="https://1drv.ms/b/s!AoVtOIbCvWxqhMsWkcTUhMZWiBOLFQ?e=ZMlvib" target="_blank">View Research Report</a></p>
-                `
-            },
-            'ant-colony-modeling': {
-                title: 'Ant Colony Caste Ratio Modeling',
-                details: `
-                    <h2>McGill University Research (2017)</h2>
-                    <h3>Project Scope:</h3>
-                    <ul>
-                        <li>Modeled caste ratios in ant genus Pheidole</li>
-                        <li>Derived difference equations for ant colony dynamics</li>
-                        <li>Implemented simulation predicting population over seasons</li>
-                        <li>Analyzed mortality rates impact on colony structure</li>
-                    </ul>
-                    <p><strong>Technologies:</strong> Python, Mathematical Modeling, Biological Simulation</p>
-                    <p><strong>Impact:</strong> Contributed to understanding of social insect biology</p>
-                    <p><strong>📊 Presentation:</strong> <a href="https://tinyurl.com/459es7t2" target="_blank">View Presentation</a></p>
-                `
-            },
-            'ansible-config-management': {
-                title: 'Ansible Configuration Management',
-                details: `
-                    <h2>Enterprise Infrastructure as Code Project (2024)</h2>
-                    <h3>Key Features:</h3>
-                    <ul>
-                        <li>Built automated server configuration system using Ansible</li>
-                        <li>Implemented Infrastructure as Code with reusable roles</li>
-                        <li>Created production-ready automation for Nginx, SSL, and security</li>
-                        <li>Multi-environment support (Production/Staging/Development)</li>
-                        <li>Security hardening with firewall and user management</li>
-                        <li>Template-driven configurations for maximum flexibility</li>
-                    </ul>
-                    <p><strong>Technologies:</strong> Ansible, YAML, Nginx, Linux, Infrastructure as Code, SSL/TLS</p>
-                    <p><strong>Impact:</strong> Reduced deployment time by 80% with consistent configurations</p>
-                    <h3>Technical Highlights:</h3>
-                    <ul>
-                        <li>Role-based architecture with modular components</li>
-                        <li>Automated SSL certificate generation and deployment</li>
-                        <li>Comprehensive security hardening (UFW, SSH keys, user management)</li>
-                        <li>Production-ready Nginx configurations with performance optimization</li>
-                    </ul>
-                    <p><strong>💻 GitHub Repository:</strong> <a href="https://github.com/limatwo/ansible-config-management" target="_blank">View Complete Project</a></p>
-                `
-            }
-        };
-        
-        // Create floating sand particles
-        function createParticles() {
-            const particles = document.getElementById('particles');
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
-                particles.appendChild(particle);
-            }
-        }
+    <div class="project-circle" id="project2" data-project="face-mask-detection">
+      <h3>Face Mask Detection</h3>
+      <p>Real-time AI system using OpenCV & TensorFlow</p>
+    </div>
 
-        // Initialize event listeners when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Central dallah click
-            document.getElementById('centralDallah').addEventListener('click', expandProjects);
-            
-            // Project circle clicks
-            document.querySelectorAll('.project-circle').forEach(circle => {
-                circle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const projectType = this.getAttribute('data-project');
-                    openModal(projectType);
-                });
-            });
-            
-            // Close modal events
-            document.querySelector('.close').addEventListener('click', closeModal);
-            
-            // Close modal when clicking outside
-            document.getElementById('projectModal').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closeModal();
-                }
-            });
-            
-            // Initialize particles
-            createParticles();
+    <div class="project-circle" id="project3" data-project="mine-detection-robot">
+      <h3>Mine Detection Robot</h3>
+      <p>Autonomous landmine detection & deactivation system</p>
+    </div>
+
+    <div class="project-circle" id="project4" data-project="connectome-fingerprinting">
+      <h3>Connectome Fingerprinting</h3>
+      <p>fMRI data analysis for brain connectivity patterns</p>
+    </div>
+
+    <div class="project-circle" id="project5" data-project="ant-colony-modeling">
+      <h3>Ant Colony Modeling</h3>
+      <p>Biological simulation of Pheidole caste ratios</p>
+    </div>
+
+    <div class="project-circle" id="project6" data-project="ansible-config-management">
+      <h3>Ansible Config Management</h3>
+      <p>Enterprise Infrastructure as Code with automated deployments</p>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    let projectsExpanded = false;
+
+    const projectData = {
+      'reconfigurable-robot': {
+        title: 'Reconfigurable Robot for Security Applications',
+        details: `
+          <h2>Master's Project - Carleton University (2011-2012)</h2>
+          <p><strong>Objective:</strong> Developed for Allen Vanguard Corporation</p>
+          <h3>Key Achievements:</h3>
+          <ul>
+            <li>Identified manipulator arm shortcomings and set new requirements</li>
+            <li>Modeled the arm in MATLAB Simulink Sim-mechanics with 3D animation</li>
+            <li>Introduced lockable passive joints to increase workspace</li>
+            <li>Calculated optimal passive joint length for mobile base reconfiguration</li>
+          </ul>
+          <p><strong>Technologies:</strong> MATLAB, Simulink, Sim-mechanics, Virtual Reality Toolbox, SolidWorks</p>
+          <p><strong>📄 Project Report:</strong> <a href="https://tinyurl.com/246v6cjy" target="_blank">View Full Report</a></p>
+        `
+      },
+      'face-mask-detection': {
+        title: 'Face Mask Detection System',
+        details: `
+          <h2>AI Computer Vision Project (2024)</h2>
+          <h3>Key Features:</h3>
+          <ul>
+            <li>Real-time face mask detection using Python and OpenCV</li>
+            <li>Deep learning implementation with TensorFlow and MobileNet v2</li>
+            <li>Achieved 95%+ accuracy in live video classification</li>
+            <li>Deployment-ready AI-powered application</li>
+          </ul>
+          <p><strong>Technologies:</strong> Python, OpenCV, TensorFlow, MobileNet v2, Computer Vision</p>
+          <p><strong>Impact:</strong> Real-world application for health safety compliance</p>
+          <p><strong>💻 GitHub Repository:</strong> <a href="https://github.com/limatwo/facemask-detection/tree/main" target="_blank">View Code</a></p>
+        `
+      },
+      'mine-detection-robot': {
+        title: 'Robot for Mines Detection and Deactivation',
+        details: `
+          <h2>Bachelor's Graduation Project (2008-2009)</h2>
+          <h3>Innovations:</h3>
+          <ul>
+            <li>Designed new differential mobile base for improved terrain navigation</li>
+            <li>Implemented new manipulator for landmine removal</li>
+            <li>Applied noise-eliminating magnetic coil tube circuit design</li>
+            <li>Built solar tracker with orthogonal stepper motors for power</li>
+          </ul>
+          <p><strong>Technologies:</strong> Microcontroller Programming, Circuit Design, Mechanical Design, Solar Power Systems</p>
+          <p><strong>Impact:</strong> Enhanced safety for explosive ordnance disposal operations</p>
+          <p><strong>📄 Project Report:</strong> <a href="https://1drv.ms/b/s!AoVtOIbCvWxqhM4QTL2CqMX1RN7VhQ?e=xdei0Z" target="_blank">View Full Report</a></p>
+        `
+      },
+      'connectome-fingerprinting': {
+        title: 'Fingerprinting Connectome Project',
+        details: `
+          <h2>McGill University Research (2020)</h2>
+          <h3>Research Focus:</h3>
+          <ul>
+            <li>Preprocessed Human Connectome Project (HCP) fMRI data</li>
+            <li>Applied statistical methods to achieve brain connectivity correlations</li>
+            <li>Developed subject identification algorithms between sessions</li>
+            <li>Optimized functional connectivity analysis with minimal data</li>
+          </ul>
+          <p><strong>Technologies:</strong> Python, fMRI Analysis, Statistical Methods, Data Preprocessing</p>
+          <p><strong>Impact:</strong> Advanced understanding of brain connectivity patterns</p>
+          <p><strong>📄 Project Report:</strong> <a href="https://1drv.ms/b/s!AoVtOIbCvWxqhMsWkcTUhMZWiBOLFQ?e=ZMlvib" target="_blank">View Research Report</a></p>
+        `
+      },
+      'ant-colony-modeling': {
+        title: 'Ant Colony Caste Ratio Modeling',
+        details: `
+          <h2>McGill University Research (2017)</h2>
+          <h3>Project Scope:</h3>
+          <ul>
+            <li>Modeled caste ratios in ant genus Pheidole</li>
+            <li>Derived difference equations for ant colony dynamics</li>
+            <li>Implemented simulation predicting population over seasons</li>
+            <li>Analyzed mortality rates impact on colony structure</li>
+          </ul>
+          <p><strong>Technologies:</strong> Python, Mathematical Modeling, Biological Simulation</p>
+          <p><strong>Impact:</strong> Contributed to understanding of social insect biology</p>
+          <p><strong>📊 Presentation:</strong> <a href="https://tinyurl.com/459es7t2" target="_blank">View Presentation</a></p>
+        `
+      },
+      'ansible-config-management': {
+        title: 'Ansible Configuration Management',
+        details: `
+          <h2>Enterprise Infrastructure as Code Project (2024)</h2>
+          <h3>Key Features:</h3>
+          <ul>
+            <li>Built automated server configuration system using Ansible</li>
+            <li>Implemented Infrastructure as Code with reusable roles</li>
+            <li>Created production-ready automation for Nginx, SSL, and security</li>
+            <li>Multi-environment support (Production/Staging/Development)</li>
+            <li>Security hardening with firewall and user management</li>
+            <li>Template-driven configurations for maximum flexibility</li>
+          </ul>
+          <p><strong>Technologies:</strong> Ansible, YAML, Nginx, Linux, Infrastructure as Code, SSL/TLS</p>
+          <p><strong>Impact:</strong> Reduced deployment time by 80% with consistent configurations</p>
+          <h3>Technical Highlights:</h3>
+          <ul>
+            <li>Role-based architecture with modular components</li>
+            <li>Automated SSL certificate generation and deployment</li>
+            <li>Comprehensive security hardening (UFW, SSH keys, user management)</li>
+            <li>Production-ready Nginx configurations with performance optimization</li>
+          </ul>
+          <p><strong>💻 GitHub Repository:</strong> <a href="https://github.com/limatwo/ansible-config-management" target="_blank">View Complete Project</a></p>
+        `
+      }
+    };
+
+    function createParticles() {
+      const particles = document.getElementById('particles');
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+        particles.appendChild(particle);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('centralDallah').addEventListener('click', expandProjects);
+
+      document.querySelectorAll('.project-circle').forEach(circle => {
+        circle.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const projectType = this.getAttribute('data-project');
+          openModal(projectType);
         });
+      });
 
-        function expandProjects() {
-            if (projectsExpanded) return;
-            
-            projectsExpanded = true;
-            const projects = document.querySelectorAll('.project-circle');
-            const centralDallah = document.getElementById('centralDallah');
-            
-            centralDallah.style.transform = 'scale(0.8)';
-            
-            const positions = [
-                { x: -350, y: -250 },
-                { x: 350, y: -250 },
-                { x: -450, y: -50 },
-                { x: 450, y: -50 },
-                { x: -350, y: 150 },
-                { x: 350, y: 150 }
-            ];
+      document.querySelector('.close').addEventListener('click', closeModal);
 
-            projects.forEach((project, index) => {
-                setTimeout(() => {
-                    project.style.left = `calc(50% + ${positions[index].x}px)`;
-                    project.style.top = `calc(50% + ${positions[index].y}px)`;
-                    project.style.transform = 'translate(-50%, -50%) scale(1)';
-                    project.classList.add('visible');
-                }, index * 100);
-            });
-        }
+      document.getElementById('projectModal').addEventListener('click', function (e) {
+        if (e.target === this) closeModal();
+      });
 
-        function resetView() {
-            projectsExpanded = false;
-            const projects = document.querySelectorAll('.project-circle');
-            const centralDallah = document.getElementById('centralDallah');
-            
-            centralDallah.style.transform = 'scale(1)';
-            
-            projects.forEach(project => {
-                project.classList.remove('visible');
-                project.style.transform = 'translate(-50%, -50%) scale(0)';
-            });
-        }
+      createParticles();
+    });
 
-        function openModal(projectType) {
-            const modal = document.getElementById('projectModal');
-            const content = document.getElementById('modalContent');
-            
-            if (projectData[projectType]) {
-                content.innerHTML = projectData[projectType].details;
-                modal.style.display = 'block';
-            }
-        }
+    function expandProjects() {
+      if (projectsExpanded) return;
 
-        function closeModal() {
-            document.getElementById('projectModal').style.display = 'none';
-        }
-    </script>
+      projectsExpanded = true;
+      const projects = document.querySelectorAll('.project-circle');
+      const centralDallah = document.getElementById('centralDallah');
+
+      centralDallah.style.transform = 'scale(0.8)';
+
+      const positions = [
+        { x: -350, y: -250 },
+        { x: 350, y: -250 },
+        { x: -450, y: -50 },
+        { x: 450, y: -50 },
+        { x: -350, y: 150 },
+        { x: 350, y: 150 }
+      ];
+
+      projects.forEach((project, index) => {
+        setTimeout(() => {
+          project.style.left = `calc(50% + ${positions[index].x}px)`;
+          project.style.top = `calc(50% + ${positions[index].y}px)`;
+          project.style.transform = 'translate(-50%, -50%) scale(1)';
+          project.classList.add('visible');
+        }, index * 100);
+      });
+    }
+
+    function resetView() {
+      projectsExpanded = false;
+      const projects = document.querySelectorAll('.project-circle');
+      const centralDallah = document.getElementById('centralDallah');
+
+      centralDallah.style.transform = 'scale(1)';
+
+      projects.forEach(project => {
+        project.classList.remove('visible');
+        project.style.transform = 'translate(-50%, -50%) scale(0)';
+      });
+    }
+
+    function openModal(projectType) {
+      const modal = document.getElementById('projectModal');
+      const content = document.getElementById('modalContent');
+
+      if (projectData[projectType]) {
+        content.innerHTML = projectData[projectType].details;
+        modal.style.display = 'block';
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('projectModal').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
